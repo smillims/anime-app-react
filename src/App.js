@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useAnime } from "./customHooks";
+import Header from "./components/Header";
+import SortForm from "./components/SortForm";
+import AnimeCardsResults from "./components/AnimeCardsResults";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AnimeInfo from "./components/AnimeInfo";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<Main />} />
+        <Route path="/anime-info/:id" element={<AnimeInfo />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+function Main() {
+  const { currentTitle, setCurrentTitle, error, isDataLoading, animeSearch } = useAnime();
+
+  return (
+    <>
+      <SortForm onSubmit={setCurrentTitle} value={currentTitle} />
+      <AnimeCardsResults
+        currentTitle={currentTitle}
+        error={error}
+        isDataLoading={isDataLoading}
+        animeSearch={animeSearch}
+      />
+    </>
   );
 }
 
