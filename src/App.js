@@ -1,31 +1,49 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { useAnime } from "./customHooks";
 import Header from "./components/Header";
-import SortForm from "./components/SortForm";
+import SearchForm from "./components/SearchForm";
 import AnimeCardsResults from "./components/AnimeCardsResults";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AnimeInfo from "./components/AnimeInfo";
+//import AnimeInfo from "./components/AnimeInfo";
+import CardsList from "./components/CardsList";
 
 function App() {
+  const { currentTitle, setCurrentTitle, error, isDataLoading, animeSearch } = useAnime();
+
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<Main />} />
-        <Route path="/anime-info/:id" element={<AnimeInfo />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <Main
+              currentTitle={currentTitle}
+              setCurrentTitle={setCurrentTitle}
+              error={error}
+              isDataLoading={isDataLoading}
+              animeSearch={animeSearch}
+            />
+          }
+        />
+        <Route
+          path={`/${currentTitle}`}
+          element={<CardsList currentTitle={currentTitle} animeSearch={animeSearch} />}
+        />
+        {/*<Route path={`/${currentTitle}/:id`} element={<AnimeInfo />} />*/}
       </Routes>
     </BrowserRouter>
   );
 }
 
-function Main() {
-  const { currentTitle, setCurrentTitle, error, isDataLoading, animeSearch } = useAnime();
-
+function Main({ currentTitle, setCurrentTitle, error, isDataLoading, animeSearch }) {
   return (
     <>
-      <SortForm onSubmit={setCurrentTitle} value={currentTitle} />
+      <SearchForm onSubmit={setCurrentTitle} value={currentTitle} />
       <AnimeCardsResults
         currentTitle={currentTitle}
+        setCurrentTitle={setCurrentTitle}
         error={error}
         isDataLoading={isDataLoading}
         animeSearch={animeSearch}

@@ -20,8 +20,6 @@ export const useAnime = () => {
           Make sure the request was submitted without errors.`;
           const filterAnime = filterAnimeByTitle(data);
 
-          console.log(data, filterAnime, currentTitle);
-
           if (status !== "200" && message) throw Error(error);
 
           if (filterAnime.length === 0) {

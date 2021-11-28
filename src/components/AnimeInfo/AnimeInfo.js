@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AnimeDetailPage from "../AnimeDetailPage";
-import { useAnime } from "../../customHooks";
 
 function AnimeInfo() {
   const [animeDetail, setAnimeDetail] = useState({});
-  const { error, setError, isDataLoading, setIsDataLoading } = useAnime();
+  const [error, setError] = useState(null);
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   const animeID = window.location.pathname
     .split("/")
@@ -26,7 +26,7 @@ function AnimeInfo() {
         .finally(() => setIsDataLoading(false));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animeID]);
+  }, []);
 
   if (isDataLoading) {
     return <p>Loading...</p>;

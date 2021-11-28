@@ -18,9 +18,5 @@ export function validateAndLoadData(currentTitle) {
     return results;
   });
 
-  fetchAPI
-    .then(res => console.log(res, 'res animeData'))
-    .catch(err => console.log(err, 'err animeData'));
-
   return fetchAPI;
 }

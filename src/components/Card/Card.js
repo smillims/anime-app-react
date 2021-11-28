@@ -1,9 +1,9 @@
 import styles from './Card.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Card({ card }) {
+export default function Card({ currentTitle, card }) {
   return (
-    <Link to={`/anime-info/${card.mal_id}`}>
+    <Link to={`/${currentTitle}/${card.mal_id}`}>
       <div className={styles.card} id={card.mal_id}>
         <div className={styles.cardImgContainer}>
           <img src={card.image_url} alt={card.title} />

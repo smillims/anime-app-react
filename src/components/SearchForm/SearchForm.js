@@ -1,25 +1,25 @@
-import styles from './SortForm.module.css';
+import styles from "./SearchForm.module.css";
 
-export default function SortForm({ onSubmit, value }) {
+export default function SearchForm({ onSubmit, value }) {
   return (
     <div className={styles.sectionForm}>
       <form
-        className={styles.sortForm}
-        id="sortForm"
-        name="sortForm"
-        onSubmit={event => {
+        className={styles.searchForm}
+        id="searchForm"
+        name="searchForm"
+        onSubmit={(event) => {
           event.preventDefault();
           onSubmit(event.target.firstChild.value);
         }}
       >
-        {SearchInputSortForm(value)}
-        {ApplyButtonSortForm()}
+        <SearchInputSortForm value={value} />
+        <ApplyButtonSortForm />
       </form>
     </div>
   );
 }
 
-function SearchInputSortForm(value) {
+function SearchInputSortForm({ value }) {
   return (
     <input
       className={styles.search}

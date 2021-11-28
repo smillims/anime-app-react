@@ -1,8 +1,23 @@
-import { paragraphOfState } from './AnimeCardsResults.module.css';
-import CardsList from '../CardsList';
+//import { useEffect } from "react";
+//import { useNavigate } from "react-router-dom";
 
-function AnimeCardsResults({ currentTitle, error, isDataLoading, animeSearch }) {
-  if (currentTitle === '') {
+//import CardsList from "../CardsList";
+import { paragraphOfState } from "./AnimeCardsResults.module.css";
+
+function AnimeCardsResults({ currentTitle, setCurrentTitle, error, isDataLoading, animeSearch }) {
+  //const navigate = useNavigate();
+
+  //useEffect(() => {
+  //  if (currentTitle && !isDataLoading) {
+  //    navigate(`/${currentTitle}`);
+  //    setCurrentTitle("");
+  //  }
+  //  //setCurrentTitle('')
+
+  //  // eslint-disable-next-line react-hooks/exhaustive-deps
+  //}, [currentTitle, isDataLoading, navigate]);
+
+  if (currentTitle === "") {
     return (
       <div className={paragraphOfState}>
         <p>Good day (or evening)!</p>
@@ -17,15 +32,17 @@ function AnimeCardsResults({ currentTitle, error, isDataLoading, animeSearch }) 
 
   if (error) {
     return (
-      <div className={paragraphOfState}>{typeof error === 'object' ? error.toString() : error}</div>
+      <div className={paragraphOfState}>{typeof error === "object" ? error.toString() : error}</div>
     );
   }
 
-  return (
-    <div className={paragraphOfState}>
-      <CardsList animeSearch={animeSearch} />
-    </div>
-  );
+  return null
+
+  //return (
+  //  <div className={paragraphOfState}>
+  //    <CardsList currentTitle={currentTitle} animeSearch={animeSearch} />
+  //  </div>
+  //);
 }
 
 export default AnimeCardsResults;
