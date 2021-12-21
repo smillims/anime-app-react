@@ -1,9 +1,12 @@
+import PT from 'prop-types';
+import { isEmpty } from 'lodash';
+
 import styles from './AnimeDetailPage.module.css';
 
-function AnimeDetailPage({ animeDetail }) {
-  if (Object.keys(animeDetail).length === 0) return 'Please, wait some seconds or reload the page';
+const AnimeDetailPage = ({ animeDetail }) => {
+  if (isEmpty(animeDetail)) return 'Please, wait some seconds or reload the page';
 
-  const checkOnNull = item => (item === null ? <b>No info</b> : item);
+  const checkOnNull = item => (item ? item : <b>No info</b>);
 
   const {
     image_url,
@@ -56,14 +59,12 @@ function AnimeDetailPage({ animeDetail }) {
         <h3>Synopsis</h3>
         <p>{checkOnNull(synopsis)}</p>
       </div>
-      {/*<div className={styles.trailer}>
-        <h3>Trailer</h3>
-        <form className={styles.trailerForm}>
-          <iframe name="iframe" src={trailer_url}></iframe>
-        </form>
-      </div>*/}
     </div>
   );
+}
+
+AnimeDetailPage.propTypes = {
+  animeDetail: PT.object
 }
 
 export default AnimeDetailPage;

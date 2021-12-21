@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AnimeDetailPage from "../AnimeDetailPage";
 import { useAnime } from "../../customHooks";
 
-function AnimeInfo() {
+const AnimeInfo = () => {
   const [animeDetail, setAnimeDetail] = useState({});
   const { error, setError, isDataLoading, setIsDataLoading } = useAnime();
 

@@ -1,7 +1,9 @@
+import PT from 'prop-types';
+
 import { paragraphOfState } from './AnimeCardsResults.module.css';
 import CardsList from '../CardsList';
 
-function AnimeCardsResults({ currentTitle, error, isDataLoading, animeSearch }) {
+const AnimeCardsResults = ({ currentTitle, error, isDataLoading, animeSearch }) => {
   if (currentTitle === '') {
     return (
       <div className={paragraphOfState}>
@@ -26,6 +28,13 @@ function AnimeCardsResults({ currentTitle, error, isDataLoading, animeSearch }) 
       <CardsList animeSearch={animeSearch} />
     </div>
   );
+}
+
+AnimeCardsResults.propTypes = {
+  currentTitle: PT.string,
+  error: PT.oneOfType([PT.object, PT.string]),
+  isDataLoading: PT.bool,
+  animeSearch: PT.array
 }
 
 export default AnimeCardsResults;

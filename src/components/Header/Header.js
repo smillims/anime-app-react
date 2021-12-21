@@ -1,6 +1,6 @@
 import { header, headerH1 } from "./Header.module.css";
 
-export default function Header() {
+function Header() {
   return (
     <header className={header}>
       <h1 className={headerH1} title="* read like Tsundoku">
@@ -9,3 +9,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default Header;
